@@ -9,7 +9,7 @@ A terminal music player skill for [Claude Code](https://claude.ai/code). Control
 
 ## Features
 
-- **Slash command control** — `/jukebox play|pause|next|prev|stop|status`
+- **Slash command control** — `/claude-jukebox play|pause|next|prev|stop|status`
 - **Natural language** — say "播放音乐", "下一首", "暂停" and Claude understands
 - **Real-time statusline** — song name + progress bar + time, refreshes every second
 - **Synchronized lyrics** — auto-loads `.lrc` files and displays the current line
@@ -53,7 +53,13 @@ mkdir -p ~/.claude/skills/claude-jukebox
 cp skills/SKILL.md ~/.claude/skills/claude-jukebox/
 ```
 
-3. **Configure the statusline** — add to `~/.claude/settings.json`:
+3. **Install the slash command:**
+
+```bash
+cp commands/claude-jukebox.md ~/.claude/commands/
+```
+
+4. **Configure the statusline** — add to `~/.claude/settings.json`:
 
 ```json
 {
@@ -79,12 +85,12 @@ mkdir -p ~/Music/driving
 
 | Command | Action |
 |---------|--------|
-| `/jukebox play` | Start playback (or resume if paused) |
-| `/jukebox pause` | Pause playback |
-| `/jukebox next` | Skip to next track |
-| `/jukebox prev` | Go to previous track |
-| `/jukebox stop` | Stop playback and quit mpv |
-| `/jukebox status` | Show current track info |
+| `/claude-jukebox play` | Start playback (or resume if paused) |
+| `/claude-jukebox pause` | Pause playback |
+| `/claude-jukebox next` | Skip to next track |
+| `/claude-jukebox prev` | Go to previous track |
+| `/claude-jukebox stop` | Stop playback and quit mpv |
+| `/claude-jukebox status` | Show current track info |
 
 ### Natural Language
 
@@ -211,7 +217,7 @@ In `~/.claude/settings.json`, adjust `refreshInterval` (minimum 1 second):
 
 | Problem | Solution |
 |---------|----------|
-| "未在播放" but mpv is running | Socket mismatch — run `killall mpv` and restart with `/jukebox play` |
+| "未在播放" but mpv is running | Socket mismatch — run `killall mpv` and restart with `/claude-jukebox play` |
 | No lyrics in statusline | Ensure `.lrc` filename matches audio filename exactly (minus extension) |
 | Statusline not showing | Restart Claude Code after adding statusLine to settings.json |
 | mpv not found | `brew install mpv` (macOS) or `apt install mpv` (Linux) |
@@ -221,6 +227,7 @@ In `~/.claude/settings.json`, adjust `refreshInterval` (minimum 1 second):
 
 ```bash
 rm -rf ~/.claude/skills/claude-jukebox
+rm ~/.claude/commands/claude-jukebox.md
 rm ~/.claude/bin/musicctl.sh ~/.claude/bin/music-status.sh
 # Remove "statusLine" section from ~/.claude/settings.json
 ```

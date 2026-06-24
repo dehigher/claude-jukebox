@@ -19,6 +19,11 @@ mkdir -p ~/.claude/skills/claude-jukebox
 cp "$SCRIPT_DIR/skills/SKILL.md" ~/.claude/skills/claude-jukebox/
 echo "  ✓ Skill installed to ~/.claude/skills/claude-jukebox/"
 
+# Install slash command
+mkdir -p ~/.claude/commands
+cp "$SCRIPT_DIR/commands/claude-jukebox.md" ~/.claude/commands/
+echo "  ✓ Command installed to ~/.claude/commands/claude-jukebox.md"
+
 # Create music directory
 mkdir -p ~/Music/driving
 echo "  ✓ Music directory: ~/Music/driving/"
@@ -57,4 +62,4 @@ else
 fi
 
 echo ""
-echo "Done! Restart Claude Code, then use /jukebox play to start."
+echo "Done! Restart Claude Code, then use /claude-jukebox play to start."
